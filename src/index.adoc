@@ -2,15 +2,16 @@
 :imagesdir: assets
 include::header.adoc[]
 
-= Title of Your Book
+= Programmer's Handbook
 
-Welcome to Lorem Ipsum Book!
+Welcome to Programmer's Handbook!
 
-Before you start writing the book, you should edit `docs.json` file to contain
-the correct `alias` of your book.
+This little piece of advice documents tools and best practices we use to create
+software in VacuumLabs. Read them carefully and if something is unclear to you,
+ask your colleagues.
 
-The `read` argument describes which repositories enable the user to access the
-book hosted on we.vacuumlabs.com.
+== Tools
+include::tools/index.adoc[]
 
-== Some Example Chapter
-include::example/index.adoc[]
+== Tutorials
+include::tutorials/index.adoc[]

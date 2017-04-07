@@ -1,0 +1,17 @@
+Learning HTML/CSS::
+link:http://www.w3schools.com[W3 Schools] is a great starter point for learning
+basics of HTML and CSS.
+
+Learning JavaScript::
+Definitely, have a look at an introduction tutorial into JavaScript on
+link:https://www.codecademy.com/learn/javascript[Codecademy]. Use
+link:https://developer.mozilla.org/en-US/docs/Web/JavaScript[Mozilla Developer
+Network] as your online JavaScript reference.
+
+Learning JS React & Flux::
+We use cool modern JavaScript technology like
+link:http://facebook.github.io/react/[React] and link:http://redux.js.org[Redux].
+
+Learning Python::
+We use link:http://www.diveintopython3.net[Python3] with Django.
+Have a look at this great link:http://gettingstartedwithdjango.com[Django tutorial].
