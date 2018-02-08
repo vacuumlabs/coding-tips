@@ -4,7 +4,7 @@ include::../header.adoc[]
 :recommended-distro: link:http://www.ubuntu.com[Ubuntu^]
 :ubuntu-help: https://help.ubuntu.com/stable/ubuntu-help/
 :shell-help: http://linuxcommand.org/learning_the_shell.php
-:git-book: https://git-scm
+:git-book: https://git-scm.com/book
 :github-flow: https://guides.github.com/introduction/flow/
 
 === Operating System

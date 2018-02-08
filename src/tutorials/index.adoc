@@ -8,7 +8,7 @@ link:https://www.codecademy.com/learn/javascript[Codecademy]. Use
 link:https://developer.mozilla.org/en-US/docs/Web/JavaScript[Mozilla Developer
 Network] as your online JavaScript reference.
 
-Learning JS React & Flux::
+Learning JS React & Redux::
 We use cool modern JavaScript technology like
 link:http://facebook.github.io/react/[React] and link:http://redux.js.org[Redux].
 
