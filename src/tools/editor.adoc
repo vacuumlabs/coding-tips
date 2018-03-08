@@ -1,0 +1,11 @@
+// Include headers in all files to support Atom's Asciidoc Preview plugin.
+include::../header.adoc[]
+
+=== Text Editor
+Install link:https://atom.io/[Atom].
+
+Install following packages:
+
+* git-blame
+
+NOTE: TODO: Recommended plugins? And tips?

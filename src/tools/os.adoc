@@ -1,0 +1,22 @@
+// Include headers in all files to support Atom's Asciidoc Preview plugin.
+include::../header.adoc[]
+
+:recommended-distro: link:http://www.ubuntu.com[Ubuntu^]
+:ubuntu-help: https://help.ubuntu.com/stable/ubuntu-help/
+
+=== Operating System
+Use either Mac or Linux for development. Don't use Windows, don't even think
+about it! There is always something working differently on Windows than on the
+other platforms. This costs us huge amounts of time debugging problems instead
+of developing valuable features.
+
+If you are new to Linux, install {recommended-distro}. Make sure to read
+{ubuntu-help}[the introduction to Ubuntu Desktop^], especially
+{ubuntu-help}addremove.html[how the software installation work in Linux^].
+
+NOTE: TODO: How to install distro?
+
+==== Linux
+
+==== macOS
+

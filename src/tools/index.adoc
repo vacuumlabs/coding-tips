@@ -1,65 +1,10 @@
 // Include headers in all files to support Atom's Asciidoc Preview plugin.
 include::../header.adoc[]
 
-:recommended-distro: link:http://www.ubuntu.com[Ubuntu^]
-:ubuntu-help: https://help.ubuntu.com/stable/ubuntu-help/
-:shell-help: http://linuxcommand.org/learning_the_shell.php
-:git-book: https://git-scm.com/book
-:github-flow: https://guides.github.com/introduction/flow/
+include::./os.adoc[]
 
-=== Operating System
-Use either Mac or Linux for development. Don't use Windows, don't even think
-about it! There is always something working differently on Windows than on the
-other platforms. This costs us huge amounts of time debugging problems instead
-of developing valuable features.
+include::./terminal.adoc[]
 
-If you are new to Linux, install {recommended-distro}. Make sure to read
-{ubuntu-help}[the introduction to Ubuntu Desktop^], especially
-{ubuntu-help}addremove.html[how the software installation work in Linux^].
+include::./editor.adoc[]
 
-NOTE: TODO: How to install distro?
-
-=== Shell
-Learn {shell-help}[the basics of UNIX shell^].
-
-Replace your default shell with much better one called _zsh_.
-
-.Install ZSH on Linux
-----
-sudo apt-get update && sudo apt-get install zsh
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-chsh -s $(which zsh)
-----
-
-.Install ZSH on Mac
-----
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-chsh -s $(which zsh)
-----
-
-NOTE: TODO: Recommended plugins, aliases, and themes for ZSH.
-
-=== Text Editor
-Install link:https://atom.io/[Atom].
-
-Install following packages:
-
-* git-blame
-
-NOTE: TODO: Recommended plugins? And tips?
-
-=== Git
-We use Git as a version control system. Our repositories are hosted on
-https://github.com[GitHub^]. {git-book}[This book^] is a great Git tutorial,
-read it.
-
-We use {github-flow}[GitHub flow^] as our primary git workflow. Get familiar
-with it.
-
-Learn why https://chris.beams.io/posts/git-commit/[readable commit messages
-matter^]. And start using `git blame` daily.
-
-Learn about `git add --patch`, `git reset`, and `git commit --amend`.
-
-Become friends with `git rebase -i` and never merge _master_ into
-your feature branch again.
+include::./git.adoc[]
