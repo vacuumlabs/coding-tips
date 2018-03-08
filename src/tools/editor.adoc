@@ -2,10 +2,37 @@
 include::../header.adoc[]
 
 === Text Editor
-Install link:https://atom.io/[Atom].
 
-Install following packages:
+==== Atom
+
+image::../../assets/editors/screenshot-atom.png[]
+
+link:https://atom.io/[Atom site]
+
+===== Packages
 
 * git-blame
 
 NOTE: TODO: Recommended plugins? And tips?
+
+==== Visual Studio Code
+
+image::../../assets/editors/screenshot-vscode.png[]
+
+link:https://code.visualstudio.com[Visual Studio Code site]
+
+Open source editor by Microsoft. It comes prepared for web-development with integrated support for JavaScript intellisense, git integration and with many plugins for popular frameworks.
+
+First start of the editor will welcome you with the interactive tutorial. It can help with first steps and showcase nice tricks how to speed up your workflow.
+
+===== Extensions
+
+Extensions can be installed right in the editor. kbd:[Cmd+Shift+X] opens extensions sidepanel. If you prefer installing extensions using terminal then command is `ext install name-of-extension`. A name of the extension and the tile of it can be different.
+
+- link:https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint[ESLint] `vscode-eslint` +
+Integrates link:http://eslint.org/[ESLint] into VS Code.
+- link:https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode[Prettier] `prettier-vscode` +
+VS Code package to format your JavaScript / TypeScript / CSS using link:https://github.com/prettier/prettier[Prettier].
+- link:https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens[GitLens] `gitlens` +
+GitLens supercharges the Git capabilities built into Visual Studio Code.
+- for more see link:https://marketplace.visualstudio.com[Visual Studio Marketplace]
