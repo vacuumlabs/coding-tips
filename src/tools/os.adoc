@@ -16,7 +16,56 @@ If you are new to Linux, install {recommended-distro}. Make sure to read
 
 NOTE: TODO: How to install distro?
 
-==== Linux
+// ==== Linux
 
 ==== macOS
 
+Get a _i_**Mac**_Book_ _Pro_. macOS can run on non-Apple computer, it's called Hackintosh, but things can work differently there and it's against EULA. 😞
+
+macOS has integrated App Store from which you can download some useful applications like XCode, Slack, and iWork (Pages, Numbers and Keynote) apps that came with your new Mac. You will use App Store to update the system, too.
+
+macOS doesn't come with package manager as is `apt` in the Ubuntu. There are two options link:https://brew.sh[Homebrew] and link:https://www.macports.org[MacPorts]. The most used in our company is <<Homebrew>>.
+
+===== Homebrew
+
+.Paste at a Terminal prompt
+----
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+----
+
+----
+Example usage:
+  brew search [TEXT|/REGEX/]
+  brew (info|home|options) [FORMULA...]
+  brew install FORMULA...
+  brew update
+  brew upgrade [FORMULA...]
+  brew uninstall FORMULA...
+  brew list [FORMULA...]
+
+Further help:
+  man brew
+  brew help [COMMAND]
+  brew home
+----
+
+----
+brew-cask provides a friendly homebrew-style CLI workflow for the
+administration of macOS applications distributed as binaries.
+
+Commands:
+
+    cleanup                cleans up cached downloads and tracker symlinks
+    home                   opens the homepage of the given Cask
+    info                   displays information about the given Cask
+    install                installs the given Cask
+    list                   with no args, lists installed Casks; given installed Casks, lists staged files
+    outdated               list the outdated installed Casks
+    reinstall              reinstalls the given Cask
+    search                 searches all known Casks
+    uninstall              uninstalls the given Cask
+    upgrade                upgrades all outdated casks
+
+See also "man brew-cask"
+Example usage "brew cask install google-chrome"
+----
