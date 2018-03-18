@@ -1,0 +1,21 @@
+// Include headers in all files to support Atom's Asciidoc Preview plugin.
+include::../header.adoc[]
+
+:git-book: https://git-scm.com/book
+:github-flow: https://guides.github.com/introduction/flow/
+
+=== Git
+We use Git as a version control system. Our repositories are hosted on
+https://github.com[GitHub^]. {git-book}[This book^] is a great Git tutorial,
+read it.
+
+We use {github-flow}[GitHub flow^] as our primary git workflow. Get familiar
+with it.
+
+Learn why https://chris.beams.io/posts/git-commit/[readable commit messages
+matter^]. And start using `git blame` daily.
+
+Learn about `git add --patch`, `git reset`, and `git commit --amend`.
+
+Become friends with `git rebase -i` and never merge _master_ into
+your feature branch again.
