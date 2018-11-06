@@ -1,11 +1,14 @@
 // Include headers in all files to support Atom's Asciidoc Preview plugin.
 include::../header.adoc[]
+ifndef::imagesdir[]
+:imagesdir: ../../assets
+endif::imagesdir[]
 
 === Text Editor
 
 ==== Atom
 
-image::../../assets/editors/screenshot-atom.png[]
+image::editors/screenshot-atom.png[]
 
 link:https://atom.io/[Atom site]
 
@@ -17,7 +20,7 @@ NOTE: TODO: Recommended plugins? And tips?
 
 ==== Visual Studio Code
 
-image::../../assets/editors/screenshot-vscode.png[]
+image::editors/screenshot-vscode.png[]
 
 link:https://code.visualstudio.com[Visual Studio Code site]
 
