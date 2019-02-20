@@ -19,3 +19,25 @@ Learn about `git add --patch`, `git reset`, and `git commit --amend`.
 
 Become friends with `git rebase -i` and never merge _master_ into
 your feature branch again.
+
+[TIP]
+===============================
+In case you have your personal email set up in the global git config (`git config --global --list`), you can override it by including config file based on the current git directory.
+
+global config `~/.gitconfig`
+```
+[user]
+     name = Joe Srna
+     email = joe.srna@gmail.com
+[includeIf "gitdir:~/Projects/vacuumlabs/"]
+    path = ~/Projects/vacuumlabs/.gitconfig
+```
+
+work related config `~/Projects/vacuumlabs/.gitconfig`
+```
+[user]
+     email = joe.srna@vacuumlabs.com
+```
+
+You can verify the change by running `git config --list` within different directories.
+===============================
