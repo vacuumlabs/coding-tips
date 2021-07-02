@@ -11,7 +11,202 @@ software in VacuumLabs. Read them carefully and if something is unclear to you,
 ask your colleagues.
 
 == Tools
-include::tools/index.adoc[]
+
+:recommended-distro:
+:ubuntu-help: https://help.ubuntu.com/stable/ubuntu-help/
+
+=== Operating System
+Use either Mac or Linux for development. Don't use Windows, don't even think
+about it! There is always something working differently on Windows than on the
+other platforms. This costs us huge amounts of time debugging problems instead
+of developing valuable features.
+
+If you are new to Linux, install {recommended-distro}. Make sure to read
+{ubuntu-help}[the introduction to Ubuntu Desktop^], especially
+{ubuntu-help}addremove.html[how the software installation work in Linux^].
+
+NOTE: TODO: How to install distro?
+
+// ==== Linux
+
+==== macOS
+
+Get a _i_**Mac**_Book_ _Pro_. macOS can run on non-Apple computer, it's called Hackintosh, but things can work differently there and it's against EULA. 😞
+
+macOS has integrated App Store from which you can download some useful applications like XCode, Slack, and iWork (Pages, Numbers and Keynote) apps that came with your new Mac. You will use App Store to update the system, too.
+
+macOS doesn't come with package manager as is `apt` in the Ubuntu. There are two options link:https://brew.sh[Homebrew] and link:https://www.macports.org[MacPorts]. The most used in our company is <<Homebrew>>.
+
+===== Homebrew
+
+.Paste at a Terminal prompt
+----
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+----
+
+----
+Example usage:
+  brew search [TEXT|/REGEX/]
+  brew (info|home|options) [FORMULA...]
+  brew install FORMULA...
+  brew update
+  brew upgrade [FORMULA...]
+  brew uninstall FORMULA...
+  brew list [FORMULA...]
+
+Further help:
+  man brew
+  brew help [COMMAND]
+  brew home
+----
+
+----
+brew-cask provides a friendly homebrew-style CLI workflow for the
+administration of macOS applications distributed as binaries.
+
+Commands:
+
+    cleanup                cleans up cached downloads and tracker symlinks
+    home                   opens the homepage of the given Cask
+    info                   displays information about the given Cask
+    install                installs the given Cask
+    list                   with no args, lists installed Casks; given installed Casks, lists staged files
+    outdated               list the outdated installed Casks
+    reinstall              reinstalls the given Cask
+    search                 searches all known Casks
+    uninstall              uninstalls the given Cask
+    upgrade                upgrades all outdated casks
+
+See also "man brew-cask"
+Example usage "brew cask install google-chrome"
+----
+
+:shell-help: http://linuxcommand.org/learning_the_shell.php
+
+=== Terminal
+Learn {shell-help}[the basics of UNIX shell^].
+
+Replace your default shell with much better one called _zsh_.
+
+.Install ZSH on Linux
+----
+sudo apt-get update && sudo apt-get install zsh
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+chsh -s $(which zsh)
+----
+
+.Install ZSH on Mac
+----
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+chsh -s $(which zsh)
+----
+
+NOTE: TODO: Recommended plugins, aliases, and themes for ZSH.
+
+=== Text Editor
+
+==== Atom
+
+image::editors/screenshot-atom.png[]
+
+link:https://atom.io/[Atom site]
+
+===== Packages
+
+* git-blame
+
+NOTE: TODO: Recommended plugins? And tips?
+
+==== Visual Studio Code
+
+image::editors/screenshot-vscode.png[]
+
+link:https://code.visualstudio.com[Visual Studio Code site]
+
+Open source editor by Microsoft. It comes prepared for web-development with integrated support for JavaScript intellisense, git integration and with many plugins for popular frameworks.
+
+First start of the editor will welcome you with the interactive tutorial. It can help with first steps and showcase nice tricks how to speed up your workflow.
+
+===== Extensions
+
+Extensions can be installed right in the editor. kbd:[Cmd+Shift+X] opens extensions sidepanel. If you prefer installing extensions using terminal then command is `ext install name-of-extension`. A name of the extension and the tile of it can be different.
+
+- link:https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint[ESLint] `vscode-eslint` +
+Integrates link:http://eslint.org/[ESLint] into VS Code.
+- link:https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode[Prettier] `prettier-vscode` +
+VS Code package to format your JavaScript / TypeScript / CSS using link:https://github.com/prettier/prettier[Prettier].
+- link:https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens[GitLens] `gitlens` +
+GitLens supercharges the Git capabilities built into Visual Studio Code.
+- for more see link:https://marketplace.visualstudio.com[Visual Studio Marketplace]
+
+:git-book: https://git-scm.com/book
+:github-flow: https://guides.github.com/introduction/flow/
+
+=== Git
+We use Git as a version control system. Our repositories are hosted on
+https://github.com[GitHub^]. {git-book}[This book^] is a great Git tutorial,
+read it.
+
+We use {github-flow}[GitHub flow^] as our primary git workflow. Get familiar
+with it.
+
+Learn why https://chris.beams.io/posts/git-commit/[readable commit messages
+matter^]. And start using `git blame` daily.
+
+Learn about `git add --patch`, `git reset`, and `git commit --amend`.
+
+Become friends with `git rebase -i` and never merge _master_ into
+your feature branch again.
+
+[TIP]
+===============================
+In case you have your personal email set up in the global git config (`git config --global --list`), you can override it by including config file based on the current git directory.
+
+global config `~/.gitconfig`
+```
+[user]
+     name = Joe Srna
+     email = joe.srna@gmail.com
+[includeIf "gitdir:~/Projects/vacuumlabs/"]
+    path = ~/Projects/vacuumlabs/.gitconfig
+```
+
+work related config `~/Projects/vacuumlabs/.gitconfig`
+```
+[user]
+     email = joe.srna@vacuumlabs.com
+```
+
+You can verify the change by running `git config --list` within different directories.
+===============================
 
 == Tutorials
-include::tutorials/index.adoc[]
+
+Learning HTML/CSS::
+link:http://www.w3schools.com[W3 Schools] is a great starter point for learning
+basics of HTML and CSS.
+
+Learning JavaScript::
+Definitely, have a look at an introduction tutorial into JavaScript on
+link:https://www.codecademy.com/learn/javascript[Codecademy]. Use
+link:https://developer.mozilla.org/en-US/docs/Web/JavaScript[Mozilla Developer
+Network] as your online JavaScript reference.
+
+Learning JS React & Redux::
+We use cool modern JavaScript technology like
+link:http://facebook.github.io/react/[React] and link:http://redux.js.org[Redux].
+
+Learning Python::
+We use link:http://www.diveintopython3.net[Python3] with Django.
+Have a look at this great link:http://gettingstartedwithdjango.com[Django tutorial].
+
+Clojure intro::
+http://www.braveclojure.com/foreword/
+
+Memorable talks::
+- Simple made easy: https://www.infoq.com/presentations/Simple-Made-Easy
+- Hammock Driven Development: https://www.youtube.com/watch?v=f84n5oFoZBc
+- The Value of Values: https://www.infoq.com/presentations/Value-Values
+- Are we there yet: https://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey
+- Stop Writing Classes: https://www.youtube.com/watch?v=o9pEzgHorH0
+- Debugging with the Scientific Method: https://www.youtube.com/watch?v=FihU5JxmnBg
