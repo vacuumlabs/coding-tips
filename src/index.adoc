@@ -4,59 +4,69 @@ include::header.adoc[]
 
 = Programmer's Handbook
 
-Welcome to Programmer's Handbook! It contains a list of tools, tutorials, processes, and influential
-talks that we consider a healthy bottom line for whatever we do. The rule here is: the
-local customs of the given project always override whatever is written here.
+Welcome to Programmer's Handbook! It contains a list of tools, tutorials,
+processes, and influential talks that we consider a healthy bottom line for
+whatever we do. The rule here is: the local customs of the given project always
+override whatever is written here.
 
 == Influential talks
 
-The following talks influenced how some very senior people in VL think about programming. Watching
-these is a great way to use some
-link:https://we.vacuumlabs.com/vacuum-book/delivery-life/#_learning_time[learning time]
+The following talks influenced how some very senior people in VL think about
+programming. Watching these is a great way to use some
+link:https://we.vacuumlabs.com/vacuum-book/delivery-life/#_learning_time[learning
+time]
 
-=== link:https://www.infoq.com/presentations/Simple-Made-Easy[Rich Hickey: Simple made easy] The
-great talk by Rich Hickey, creator of Clojure language. The key message: being easy (I can do this
-with fewer keystrokes) is orthogonal to being simple (I can easily reason what the code does).
+=== link:https://www.infoq.com/presentations/Simple-Made-Easy[Rich Hickey:
+Simple made easy] The great talk by Rich Hickey, creator of Clojure language.
+The key message: being easy (I can do this with fewer keystrokes) is orthogonal
+to being simple (I can easily reason what the code does).
 
-=== link:https://www.youtube.com/watch?v=f84n5oFoZBc[Rich Hickey: Hammock Driven Development]
-Another great talk by Rich. The key message is surprisingly simple: think before you code. Yet the
-talk is very influential and funny. The majority of people don't live this elementary rule, and they
-waste a lot of their time.
+=== link:https://www.youtube.com/watch?v=f84n5oFoZBc[Rich Hickey: Hammock Driven
+Development] Another great talk by Rich. The key message is surprisingly simple:
+think before you code. Yet the talk is very influential and funny. The majority
+of people don't live this elementary rule, and they waste a lot of their time.
 
-=== link:https://www.youtube.com/watch?v=o9pEzgHorH0[Jack Diederich: Stop Writing Classes] Despite
-its name, the talk doesn't imply that OOP is bad. Rather than that, it promotes writing short,
-readable code, avoiding premature generalizations, working with pure values, and avoiding complex
-OOP structures. It's funny and refreshing talk.
+=== link:https://www.youtube.com/watch?v=o9pEzgHorH0[Jack Diederich: Stop
+Writing Classes] Despite its name, the talk doesn't imply that OOP is bad.
+Rather than that, it promotes writing short, readable code, avoiding premature
+generalizations, working with pure values, and avoiding complex OOP structures.
+It's funny and refreshing talk.
 
-=== link:https://www.youtube.com/watch?v=QM1iUe6IofM[Brian Will: Why OOP is Bad] Brian gives a
-compelling argument that state encapsulation doesn't work: The real systems are dominated by
-cross-cutting concerns. When faced with the reality of real word programs, promises of encapsulation
-tend to be broken, and object graphs quickly become tangled webs.
+=== link:https://www.youtube.com/watch?v=QM1iUe6IofM[Brian Will: Why OOP is Bad]
+Brian gives a compelling argument that state encapsulation doesn't work: The
+real systems are dominated by cross-cutting concerns. When faced with the
+reality of real word programs, promises of encapsulation tend to be broken, and
+object graphs quickly become tangled webs.
 
-Apart from this, Brian does a very systematic breakdown of what Java has brought, what are some good
-parts of it and why it thrives even though OOP is bad.
+Apart from this, Brian does a very systematic breakdown of what Java has
+brought, what are some good parts of it and why it thrives even though OOP is
+bad.
 
-=== link:https://www.youtube.com/watch?v=JjDsP5n2kSM&t=2169s[Jonathan Blow: How to program
-independent games] You don't succeed by using fancy data structure or writing an algorithm that's a
-bit faster but buggy and fragile. Independent game developer needs to be "extremely effective at
-getting things done".
+=== link:https://www.youtube.com/watch?v=JjDsP5n2kSM&t=2169s[Jonathan Blow: How
+to program independent games] You don't succeed by using fancy data structure or
+writing an algorithm that's a bit faster but buggy and fragile. Independent game
+developer needs to be "extremely effective at getting things done".
 
 === Rich Hickey on immutable values versus references
+
 - link:https://www.infoq.com/presentations/Value-Values[The Value of Values]
-- link:https://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey[Are we there yet]
+- link:https://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey[Are we
+  there yet]
 
-This is Rich (again!) promoting immutable values and immutable data structures over references that
-change over time in a mutable manner. Also, Rich talks about the Epochal time model, where the whole
-(!) state of the program is represented by a single mutable reference that takes a sequence of
-immutable values, modeling a time-evolution of a state. This model is used with Redux framework.
+This is Rich (again!) promoting immutable values and immutable data structures
+over references that change over time in a mutable manner. Also, Rich talks
+about the Epochal time model, where the whole (!) state of the program is
+represented by a single mutable reference that takes a sequence of immutable
+values, modeling a time-evolution of a state. This model is used with Redux
+framework.
 
-=== link:https://www.youtube.com/watch?v=FihU5JxmnBg[Stuart Halloway: Debugging with the Scientific
-Method]
+=== link:https://www.youtube.com/watch?v=FihU5JxmnBg[Stuart Halloway: Debugging
+with the Scientific Method]
 
-Be less chaotic and more organized when debugging. State explicitly what's your hypothesis, test it,
-think. Write things down. Test one thing at a time. A good process is more important than tools;
-scientific approach with console.log is more powerful than ad-hoc trying random stuff with a strong
-debugger.
+Be less chaotic and more organized when debugging. State explicitly what's your
+hypothesis, test it, think. Write things down. Test one thing at a time. A good
+process is more important than tools; scientific approach with console.log is
+more powerful than ad-hoc trying random stuff with a strong debugger.
 
 == Tools
 
