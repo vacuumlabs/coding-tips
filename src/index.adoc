@@ -70,110 +70,50 @@ more powerful than ad-hoc trying random stuff with a strong debugger.
 
 == Tools
 
-:recommended-distro:
-:ubuntu-help: https://help.ubuntu.com/stable/ubuntu-help/
-
 === Operating System
 Use either Mac or Linux for development. Don't use Windows, don't even think
 about it! There is always something working differently on Windows than on the
 other platforms. This costs us huge amounts of time debugging problems instead
 of developing valuable features.
 
-If you are new to Linux, install {recommended-distro}. Make sure to read
-{ubuntu-help}[the introduction to Ubuntu Desktop^], especially
-{ubuntu-help}addremove.html[how the software installation work in Linux^].
-
-NOTE: TODO: How to install distro?
+If you are new to Linux, install link:http://www.ubuntu.com[Ubuntu^]. Make sure to read
+link:https://help.ubuntu.com/stable/ubuntu-help[the introduction to Ubuntu Desktop^], especially
+link:https://help.ubuntu.com/stable/ubuntu-help/addremove.html[how the software installation work in Linux^].
 
 // ==== Linux
 
 ==== macOS
 
-Get a _i_**Mac**_Book_ _Pro_. macOS can run on non-Apple computer, it's called Hackintosh, but things can work differently there and it's against EULA. 😞
+Get a _i_**Mac**_Book_ _Pro_. macOS can run on non-Apple computer, it's called
+Hackintosh, but things can work differently there and it's against EULA. 😞
 
-macOS has integrated App Store from which you can download some useful applications like XCode, Slack, and iWork (Pages, Numbers and Keynote) apps that came with your new Mac. You will use App Store to update the system, too.
+macOS has integrated App Store from which you can download some useful
+applications like XCode, Slack, and iWork (Pages, Numbers and Keynote) apps that
+came with your new Mac. You will use App Store to update the system, too.
 
-macOS doesn't come with package manager as is `apt` in the Ubuntu. There are two options link:https://brew.sh[Homebrew] and link:https://www.macports.org[MacPorts]. The most used in our company is <<Homebrew>>.
-
-===== Homebrew
-
-.Paste at a Terminal prompt
-----
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-----
-
-----
-Example usage:
-  brew search [TEXT|/REGEX/]
-  brew (info|home|options) [FORMULA...]
-  brew install FORMULA...
-  brew update
-  brew upgrade [FORMULA...]
-  brew uninstall FORMULA...
-  brew list [FORMULA...]
-
-Further help:
-  man brew
-  brew help [COMMAND]
-  brew home
-----
-
-----
-brew-cask provides a friendly homebrew-style CLI workflow for the
-administration of macOS applications distributed as binaries.
-
-Commands:
-
-    cleanup                cleans up cached downloads and tracker symlinks
-    home                   opens the homepage of the given Cask
-    info                   displays information about the given Cask
-    install                installs the given Cask
-    list                   with no args, lists installed Casks; given installed Casks, lists staged files
-    outdated               list the outdated installed Casks
-    reinstall              reinstalls the given Cask
-    search                 searches all known Casks
-    uninstall              uninstalls the given Cask
-    upgrade                upgrades all outdated casks
-
-See also "man brew-cask"
-Example usage "brew cask install google-chrome"
-----
-
-:shell-help: http://linuxcommand.org/learning_the_shell.php
+macOS doesn't come with package manager as is `apt` in the Ubuntu. There are two
+options link:https://brew.sh[Homebrew^] and
+link:https://www.macports.org[MacPorts^]. The most used in our company is
+Homebrew.
 
 === Terminal
-Learn {shell-help}[the basics of UNIX shell^].
 
-Replace your default shell with much better one called _zsh_.
+Learn link:http://linuxcommand.org/learning_the_shell.php[the basics of UNIX shell^].
 
-.Install ZSH on Linux
-----
-sudo apt-get update && sudo apt-get install zsh
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-chsh -s $(which zsh)
-----
+Replace your default shell with much better one called _zsh_. Install
+link:https://ohmyz.sh/[oh-my-zsh^], where you can select some nice visual theme for your shell.
 
-.Install ZSH on Mac
-----
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-chsh -s $(which zsh)
-----
+I shared some stuff I'm using. A plugin called
+link:https://gist.github.com/tomaskulich/2957cba62b241d362a0ea3324ea2f2f4[swissknife^] to make shell
+more user friendly, my
+link:https://gist.github.com/tomaskulich/1d212e6c9a9381f7f25368e519dc87ab[zsh theme]. I want to see more
+than just a current folder's name on my prompt, but not the whole path either. Highly recommended is
+also `git-prompt` plugin to give you better git status to your prompt (such as: such as how many
+commits before and ahead of the remote my branch is.)
 
-NOTE: TODO: Recommended plugins, aliases, and themes for ZSH.
+If you know any other cool tricks, please contribute!
 
 === Text Editor
-
-==== Atom
-
-image::editors/screenshot-atom.png[]
-
-link:https://atom.io/[Atom site]
-
-===== Packages
-
-* git-blame
-
-NOTE: TODO: Recommended plugins? And tips?
 
 ==== Visual Studio Code
 
@@ -181,9 +121,9 @@ image::editors/screenshot-vscode.png[]
 
 link:https://code.visualstudio.com[Visual Studio Code site]
 
-Open source editor by Microsoft. It comes prepared for web-development with integrated support for JavaScript intellisense, git integration and with many plugins for popular frameworks.
-
-First start of the editor will welcome you with the interactive tutorial. It can help with first steps and showcase nice tricks how to speed up your workflow.
+Open source editor by Microsoft. It comes prepared for web-development with
+integrated support for JavaScript intellisense, git integration and with many
+plugins for popular frameworks.
 
 ===== Extensions
 
