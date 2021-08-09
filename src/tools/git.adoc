@@ -39,5 +39,5 @@ work related config `~/Projects/vacuumlabs/.gitconfig`
      email = joe.srna@vacuumlabs.com
 ```
 
-You can verify the change by running `git config --list` within different directories.
+You can verify the change by running `git config --list` within different directories. Keep in mind, that this will work correctly only in directories containing a git repository. For more information about conditional includes, visit https://git-scm.com/docs/git-config#_conditional_includes[official documentation^].
 ===============================
