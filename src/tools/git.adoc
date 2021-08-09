@@ -3,6 +3,12 @@ include::../header.adoc[]
 
 :git-book: https://git-scm.com/book
 :github-flow: https://guides.github.com/introduction/flow/
+:ssh-key: https://help.github.com/articles/checking-for-existing-ssh-keys/
+:generate-ssh-key: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#generating-a-new-ssh-key
+:github-ssh-key: https://github.com/settings/keys
+:google-doc-ssh-key: https://docs.google.com/a/vacuumlabs.com/spreadsheets/d/144yVJFm1VIqRIBtcLNUAR8GNlhsBSPOtHiqA_ovF0zI/edit?usp=sharing
+:gpg-key: https://docs.github.com/en/github/authenticating-to-github/managing-commit-signature-verification/generating-a-new-gpg-key
+:gpg-signing: https://docs.github.com/en/github/authenticating-to-github/managing-commit-signature-verification/signing-commits
 
 === Git
 We use Git as a version control system. Our repositories are hosted on
@@ -41,3 +47,13 @@ work related config `~/Projects/vacuumlabs/.gitconfig`
 
 You can verify the change by running `git config --list` within different directories. Keep in mind, that this will work correctly only in directories containing a git repository. For more information about conditional includes, visit https://git-scm.com/docs/git-config#_conditional_includes[official documentation^].
 ===============================
+
+==== Credentials
+For full access to our projects {ssh-key}[SSH key^] will be required. Add your public key to {github-ssh-key}[Github keys^] and to our {google-doc-ssh-key}[internal Google Doc^]. If you don't have one, you will need to {generate-ssh-key}[generate it^].
+
+[TIP]
+===============================
+If you've set up SSH keys on your personal computer before onboarding, you will need to generate a new key, or copy contents `~/.ssh` folder from your personal to your work laptop.
+===============================
+
+It is also useful to {gpg-key}[generate GPG key^]. This will result in better security, a more professional look, and a [green]*Verified* badge that some open-source projects require. After generating you will also need to add this key to {github-ssh-key}[Github keys^] and enable {gpg-signing}[GPG signing^].
