@@ -1,3 +1,4 @@
 {
-  "alias": "coding-tips"
+  "alias": "coding-tips",
+  "read": ["all@vacuumlabs.com", "sleepers@vacuumlabs.com"]
 }
