@@ -6,8 +6,11 @@ include::header.adoc[]
 
 Welcome to Programmer's Handbook! It contains a list of tools, tutorials,
 processes, and influential talks that we consider a healthy bottom line for
-whatever we do. The rule here is: the local customs of the given project always
-override whatever is written here.
+whatever we do. The generals rules are:
+
+- Don't get trapped into dogma. Anything written here are suggestions, not commands
+- Projects set their own engineering culture which may differ from whatever is written
+  here.
 
 == Influential talks
 
@@ -19,10 +22,10 @@ time^]
 === link:https://www.infoq.com/presentations/Simple-Made-Easy[Rich Hickey:
 Simple made easy^] The great talk by Rich Hickey, creator of Clojure language.
 The key message: being easy (I can do this with fewer keystrokes) is orthogonal
-to being simple (I can easily reason what the code does).
+to being simple (I can easily reason about what the code does).
 
 === link:https://www.youtube.com/watch?v=f84n5oFoZBc[Rich Hickey: Hammock Driven
-Development^] Another great talk by Rich. The key message is surprisingly simple:
+Development^] Another great talk by Rich. The key message is simple:
 think before you code. Yet the talk is very influential and funny. The majority
 of people don't live this elementary rule, and they waste a lot of their time.
 
@@ -38,8 +41,8 @@ real systems are dominated by cross-cutting concerns. When faced with the
 reality of real word programs, promises of encapsulation tend to be broken, and
 object graphs quickly become tangled webs.
 
-Apart from this, Brian does a very systematic breakdown of what Java has
-brought, what are some good parts of it and why it thrives even though OOP is
+Apart from this, Brian does a very systematic breakdown of what Java has brought to engineering
+world, what are some good parts of it and why it thrives even though OOP is
 bad.
 
 === link:https://www.youtube.com/watch?v=JjDsP5n2kSM&t=2169s[Jonathan Blow: How
@@ -103,12 +106,12 @@ Learn link:http://linuxcommand.org/learning_the_shell.php[the basics of UNIX she
 Replace your default shell with much better one called _zsh_. Install
 link:https://ohmyz.sh/[oh-my-zsh^], where you can select some nice visual theme for your shell.
 
-I shared some stuff I'm using. A plugin called
+I shared some stuff I'm (Tomas Kulich) using. A plugin called
 link:https://gist.github.com/tomaskulich/2957cba62b241d362a0ea3324ea2f2f4[swissknife^] to make shell
 more user friendly, my
 link:https://gist.github.com/tomaskulich/1d212e6c9a9381f7f25368e519dc87ab[zsh theme]. I want to see more
 than just a current folder's name on my prompt, but not the whole path either. Highly recommended is
-also `git-prompt` plugin to give you better git status to your prompt (such as: such as how many
+also `git-prompt` plugin to give you better git status to your prompt (such as: how many
 commits before and ahead of the remote my branch is.)
 
 If you know any other cool tricks, please contribute!
@@ -200,3 +203,343 @@ Have a look at this great link:http://gettingstartedwithdjango.com[Django tutori
 
 Clojure intro::
 http://www.braveclojure.com/foreword/
+
+== VL and functional programming
+
+=== Use pure functions
+
+We often say that in VL we do functional programming. Sure, function is a great concept. If a
+language has functions, you can easily model all OOP concepts such as inheritance. This doesn't work
+the opposite way round so easily.
+
+The best kind function is pure function. That's one that does not depend on anything from the
+outside world. Furthermore, pure function shouldn't mutate its arguments and should use solely the
+return statement to communicate the result to the caller.
+
+Pure function can be tested and reasoned about in isolation. Therefore the second code snippet is a
+way more preferred to the first:
+
+```
+// don't do this
+function main() {
+  function this_is_hard_to_test(filename) {
+    const data = read_data_from_file(filename)
+    do_something_with_data
+    return something
+  }
+  this_is_hard_to_test('data.txt')
+}
+
+// do this
+function main() {
+  const data = read_data_from_file('data.txt')
+  function this_is_better(data) {
+    do_something_with_data
+    return something
+  }
+  this_is_better(data)
+}
+```
+
+Don't get trapped by dogma here: many tasks can not be easily addressed using only 100% pure functions.
+Be ready to conduct some side-effects, read (and sometimes even modify) variables from the outer scopes,
+etc. The learning here is, that you should pursue the purity to the reassonable level.
+
+As an example, Haskell takes purity really seriously and perform side-effects by monads. Monads
+seemingly make all functions pure, but in reality, it's the kind of purity which costs you a lot,
+while not buying you either better testability, nor it ease your resoning about the code.
+
+=== Prefer simple data structures
+
+In Java-ish languages one does often define structures like this:
+
+```
+class Person {
+  first_name: String
+  last_name: String
+  function full_name() : String {
+    return this.first_name + ' ' + this.last_name
+  }
+}
+
+const me = new Person(...)
+```
+
+In JS, TS, Clojure the second approach is very common:
+
+```
+const me:User = {first_name: "Tomas", last_name: "Kulich"}
+
+function full_name_for_person(person) {
+  return person.first_name + ' ' + person.last_name
+}
+```
+
+The second approach works very well, especially with simpler structures. The reason is, that there
+are already many excellent battle-tested libraries that work for plain structures. Say you need to
+determine, whether two Persons are deeply equal. In the Java case, you need to write (or
+auto-generate, sigh) a custom .equals method and compare the objects field-by-field. With the second
+approach and Javascript, you can use `lodash.equals` for deep-equality checks.
+
+But there's much more: `lodash.deepCopy` gives you (customizable) deep copying, `lodash.merge` gives
+you deep updates, there's out-of-the-box (de)serialization with JSON.something, there's an
+immutability helper to ease your work with object in an immutable manner, etc...
+Implementing this yourself for your custom Person class is a huge vaste of time and space for bugs.
+
+The learning is: study libraries such as lodash. Anytime you're like "hey, I'm forced to
+implement something that feels like a general object-manipulation stuff", pause and reflect on your design.
+
+=== Immutable data structures
+
+Think of a typical String or Date implementations. Usually (Java, Python, JS), these are immutable
+objects; one can construct new string such as `my_string + "!"` but there is no way mutating the
+string, e.g. no `my_string.append("!")` exist. This brings a great relief when reasoning about Strings:
+if I see `my_string` variable somewhere, I can trust that no matter who else keeps the reference to
+the same string, the stuff is not going to change.
+
+It's natural to strive for the immutability benefits also with Maps, Lists (and Objects). In JS
+there are several easy ways how to update the object in an immutable manner:
+
+```
+const updated_user = {...user, name: new_name}
+// or this one, ideal for nested objects
+const updated_user = immutability_helper.update(user, {name: {$set: new_name}})
+```
+There exist immutable data structures implementation (Map, List) that do this in a very performant
+manner (time complexity `O(lg(structure_size))`), however, unless the structures are huge, you can
+just stick to good-old mutable objects and just not mutating them by convention.
+
+=== Stay pragmatic
+
+There are many wrong things to optimize for:
+- extreme purity,
+- coding the idiomatic [your favorite framework] way,
+- 100% test coverage,
+- your code behaving 100% correctly even in unlike and unimportant situations, etc.
+
+We're solving problems. Focus on "what's the problem we're trying to solve here" rather than "what's
+the most idiomatic way to achive this in framework X".
+
+This doesn't advocate writing shitty code. Saving 30 minutes of your time just to create a day long
+debug session for yourself is certainly not pragmatic.
+
+=== Avoid premature optimization and premature generalizations
+
+Always be aware to how much resources (time, memory) you can waste, so you can waste them visely.
+With time, be aware of what's the most time-consuming thing that's happening and ignore everything
+else, prefering readability to unimportant time-saving. If a reviewer asks you to optimize O(n) work
+in O(n**2) algorithm, push back.
+
+Be very humble when predicting what new features bussiness will need. Even if you're right that X
+will be needed in 2 months, the prefered way  to achieve X is likely to change by that time. And
+even if you're completely right about all your predictions, it'll still may be easier postpone X for
+later, since you won't need to maintain X for 2 extra months.
+
+=== Produce bug-free code by avoiding bugs
+
+Imagine you write 100 lines. You hit run and--it's working! What a feeling! Some people do it
+differently: they quickly produce 100 lines of bad code, then using print and debugger to get the
+code in shape. Not only this feels worse, in the end, it's also much more time consuming.
+
+If you fall into the second case, consider changing your workflow. Slow down and focus on writing
+high-quality code. Reason why the code should work ("On this place, the connection must be already
+opened, because I jump here only from here and here... wait, also from here! Oh my, that'd be a
+nasty bug to have."). Play a "coding game": If the code runs correctly on the first time (possibly
+after fixing small and easy bugs such as typos), you've won. Soon you develop a healthy ammount of
+paranoia, which'll make you question your code frequently. You'll produce a code 3x slower but also
+10x faster.
+
+=== Test are good, if they add value
+
+How to write tests is almost a religious thingy, with several though schools. Stay away from the
+dogmatic mess they've created; simple pragmatism is the best guidance. If the test adds value that
+outweighs the cost (writing, maintaining and running the test), then it's a good test to have.
+
+Imagine such a test:
+- you populate a User object with data,
+- save the obejct to the database,
+- load an object from DB,
+- assert that all attributes are correctly loaded.
+
+The test has a low value and probably doesn't pull its weight:
+- it's testing a relatively simple code; it'd be easier to review it manually,
+- the code is not likely to break,
+- if test passes, it doesn't mean much; there are many edge cases (e.g. very long user name), that are
+  not covered,
+- if test fails, you'd probably find out anyway really,
+- it doesn't serve as a documentation to something worth documenting.
+
+=== Code reviews are awesome
+
+They are the best tool we have to produce a bug-free, readable and maintainable code. Often, more
+than one review is necessary for a code to be merged.
+
+Few tips:
+
+- Don't enforce your taste to others too much. If you know shorter form of how to write something
+  but you're not sure, just give advice: 'consider rewriting to ...`.
+- This sucks: correcting 10 OKish namings just because it's easy to do and missing a huge design
+  flaw at the same time.
+- If you've had an objective problem understanding something and author had to explain it to you, it
+  probablyu deserves a comment.
+- If it's for a longer discussion, schedule a call or just pick up the phone and call the other
+  person.
+
+Finally, if it's not clear why the code works correctly, you shouldn't merge it. Author can use
+different ways to persuade you, she did a good job:
+
+- adding explanatory comments,
+- writing tests, demonstrating the desired functionality,
+- structuring a code in a way, that certain behavior is enforced by design,
+- Q: "hey, I'm not sure about this", A: "Me neither, but I've tested it manually and it seems to
+  work. It's poorly documented, so it'll do for now I guess."
+
+The code review process is not so easy to get right.
+
+- Reviewer comments to the PR.
+- Author reacts :thumbsup:, if he accepts the proposed change. If it's something more complex, the
+  discussion can take place. Avoid writing a lot it's inefficient and frustrating. Have a quick call
+  instead.
+- Reviewer checks that she likes the outcome by clicking "mark as resolved".
+- If reviewer has only cosmettic comments, he can approve the PR indicating he doesn't care that
+  much which suggestions author implements.
+
+Bad practices:
+
+- Leave the comment without any reaction.
+- Resolving the reviewer's comment by the author in a case where author is not 100% sure he fixed it
+  in a way reviewer intended.
+
+The changes are pushed either as a new "fixing comments" commit, or the history is editted.
+Adapt the customs of your project.
+
+=== Microservices are often overused
+
+There's a too big hype around microservices. Obviously, the world doesn't run as one monolithic
+service (and that's a good think). Since "big project" ==  "small world", it's not a good idea for a
+big project to run as a monolithic service either. Structuring the project to smaller microservices
+helps--as long as the microservices have well-defined responsibilities and the cross-cutting
+concerns are limitted.
+
+Unhealthy hype about microservices gave birth to systems with too much microservices and a lot of
+incidental complexity. Keep the number of microservices small and create them only after you're
+pretty certain that such a service makes sense; don't be affraid to start with monolithic design and
+then carve-out a few services later.
+
+=== Monorepo is a better idea than newcomers usually think
+
+This is somewhat similar to microservices. The world isn't in one giant GIT repo, but there's a lot
+of cost if your production requires running a code from 20 different repos. If you think "we're too
+big for a simple repo", then consider the whole Google codebase lives in a single repository; they
+have a lot of tooling built around it, and as your system evolves, you'll probably need to build
+some custom tooling as well.
+
+=== Fat code is good
+When you start coding, you name your variables `i`, `j`, `k`. Then you code a project with 10k lines
+and you discover using better names such as: `user`, `account`, `ammount` or `transfer()` is good
+for your sanity.
+Then you code a project with 100k lines, discovering you need even better names:
+`account_sender_or_system_account`,
+`ammount_USD_before_VAT`, `try_transfer_with_SEPA()`. Often people use
+short and imprecise names that kick ass badly, once the project grows.
+
+Good type system can help you shorten the names of your variables and parameters, since a lot of
+info is just to describe the type. This is not always possible, especially for functions you should
+be quite verbose.
+
+Using long names results in writing a fat code: simple expression such as `a = b + c + d` can overflow the
+100 characters limit, which looks ugly and not that readable. This is usually less severe
+problem as one may think.
+
+=== Comments
+
+John produces a code. During code review, Jane doesn't understand a certain line, which creates the
+communication such as:
+
+Jane: What if `user` parameter is not provided?
+John: Actually, it's always provided.
+Jane: Why is the parameter declared as optional then?
+John: Ah, I see your point. It's optional just for the tests. Real code always puts the value there.
+I've just checked and it's really like that.
+Jane: OK then. Ship it.
+
+Then the code gets merged. But can you spot the process flaw? Jane had a valid question and John
+answered it. However, no one thought about 20 other team members that'll encounter that line of
+code. They'll be as lost as Jane, without any clue, why the code is like that.
+
+As a rule of thumb, when explaining more complected or suspicious code to the curious reviewer,
+consider adding a comment such as:
+
+```
+// Parameter `user` is actually required. It's marked optional just because of tests.
+```
+
+Another case, that always deserves a comment: copy-pasting code from somewhere. Always add a link to
+where the code came from.
+
+=== Idempotency
+
+Imagine a service that allows you to create new tansactions as such:
+
+```
+external_service.add_new_transaction(from: "john", to: "jane", usd_ammount: 10)
+```
+
+To handle possible errors, you need to add some try-catch logic:
+
+```
+try {
+  external_service.add_new_transaction({from_account: "john", to_account: "jane", usd_ammount: 10})
+} catch (err) {
+  // what now?
+}
+```
+
+How would you handle the error? You may want to repeat the transaction:
+
+```
+function try_send_transaction_with_repeat({from_account, to_account, usd_ammount, try_this_many_times}) {
+  // default value
+  try_this_many_times = try_this_many_times || 10
+  try {
+    external_service_do_your_job
+  } catch (err) {
+    if (try_this_many_times > 0) {
+      wait(10000)
+      try_send_transaction({from_account, to_account, usd_ammount, try_this_many_times - 1})
+    } else {
+      throw Error('sa mi neda poslat')
+      // pun intended
+    }
+  }
+}
+```
+
+If you call this with `try_this_many_times === 10`, you'll get 10 tries in 10s intervals and then
+error is thrown. But what if try_send_transaction actually _created_ the transaction on the external
+service and just then something failed, when sending the response back (e.g. parsing the response on
+your server is faulty)? You'd end up with 10 transaction being sent: uh-oh.
+
+To overcome this, decent external services let you specify so-called _idempotency key_ which serves
+as unique identifiers to your request. If the external service is decent, you can use it as such:
+
+```
+function try_send_transaction_with_repeat({from_account, to_account, usd_ammount, try_this_many_times, idempotency_key}) {
+  // default values
+  try_this_many_times = try_this_many_times || 10
+  idempotency_key = idempotency_key || uuid()
+  try {
+    external_service_do_your_job(..., idempotency_key)
+  } catch (err) {
+    if (try_this_many_times > 0) {
+      wait(10000)
+      try_send_transaction({from_account, to_account, usd_ammount, try_this_many_times - 1, idempotency_key})
+    } else {
+      // pun intended
+      throw Error('sa mi neda poslat')
+    }
+  }
+}
+```
+
+This is guaranteed to create one or none transaction.
