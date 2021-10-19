@@ -21,10 +21,12 @@ with it.
 Learn why https://chris.beams.io/posts/git-commit/[readable commit messages
 matter^]. And start using `git blame` daily.
 
-Learn about `git add --patch`, `git reset`, and `git commit --amend`.
+Learn about `git add --patch`, `git reset`, `git commit --amend` and `git reflog`.
 
 Become friends with `git rebase -i` and never merge _master_ into
 your feature branch again.
+
+Learn `.gitignore` best practices.
 
 [TIP]
 ===============================
