@@ -3,6 +3,8 @@ include::../header.adoc[]
 
 :recommended-distro: link:http://www.ubuntu.com[Ubuntu^]
 :ubuntu-help: https://help.ubuntu.com/stable/ubuntu-help/
+:ansible: link:https://www.ansible.com/resources/get-started[Ansible^]
+:ansible-example: link:https://opensource.com/article/18/3/manage-workstation-ansible[here^]
 
 === Operating System
 Use either Mac or Linux for development. Don't use Windows, don't even think
@@ -16,7 +18,12 @@ If you are new to Linux, install {recommended-distro}. Make sure to read
 
 NOTE: TODO: How to install distro?
 
-// ==== Linux
+==== Linux
+Use {ansible} to admin your OS. It's a configuration-as-a-code tool used to manage (usually) a big number of machines. Yes, it seems to be overly complicated solution at first sight but later you'll be grateful for using it. Basics of Ansible are easy to master since one writes only a bunch of YAML files, in principle.
+
+With the tool you have exact overview of what you changed in your computer configuration and what packages are installed. As a bonus, should your computer die or you'd need to replicate it in VM of any reason the work can be done fast with almost no effort.
+
+A basic example can be found {ansible-example}.
 
 ==== macOS
 
