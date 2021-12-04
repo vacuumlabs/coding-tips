@@ -106,6 +106,9 @@ Learn link:http://linuxcommand.org/learning_the_shell.php[the basics of UNIX she
 Replace your default shell with much better one called _zsh_. Install
 link:https://ohmyz.sh/[oh-my-zsh^], where you can select some nice visual theme for your shell.
 
+Disclaimer: Some tools may have hiccups when installing on zsh, for example bad env setup. If you
+suspect this might be the case, try good old bash.
+
 I shared some stuff I'm (Tomas Kulich) using. A plugin called
 link:https://gist.github.com/tomaskulich/2957cba62b241d362a0ea3324ea2f2f4[swissknife^] to make shell
 more user friendly, my
@@ -125,7 +128,7 @@ image::editors/screenshot-vscode.png[]
 link:https://code.visualstudio.com[Visual Studio Code site]
 
 Open source editor by Microsoft. It comes prepared for web-development with
-integrated support for JavaScript intellisense, git integration and with many
+integrated support for Javascript and Typescript intellisense, git integration and with many
 plugins for popular frameworks.
 
 ===== Extensions
@@ -246,12 +249,12 @@ Be ready to conduct some side-effects, read (and sometimes even modify) variable
 etc. The learning here is, that you should pursue the purity to the reassonable level.
 
 As an example, Haskell takes purity really seriously and perform side-effects by monads. Monads
-seemingly make all functions pure, but in reality, it's the kind of purity which costs you a lot,
-while not buying you either better testability, nor it ease your resoning about the code.
+seemingly make all functions pure, but in reality, it's the kind of purity that costs you a lot -
+while not buying you better testability, it doesn't make reasoning about the code easier either.
 
 === Prefer simple data structures
 
-In Java-ish languages one does often define structures like this:
+In Java-ish languages one often defines structures like this:
 
 ```
 class Person {
@@ -321,16 +324,16 @@ There are many wrong things to optimize for:
 - your code behaving 100% correctly even in unlike and unimportant situations, etc...
 
 We're solving real problems. Focus on "what's the problem we're trying to solve here" rather than "what's
-the most idiomatic way to achive this in framework X".
+the most idiomatic way to achieve this in framework X".
 
 This doesn't advocate writing shitty code. Saving 30 minutes of your time just to create a day long
 debug session for yourself is certainly not pragmatic.
 
 === Avoid premature optimization and premature generalizations
 
-Always be aware to how much resources (time, memory) you can waste, so you can waste them visely.
+Always be aware of how much resources (time, memory) you can waste, so you can waste them wisely.
 With time, be aware of what's the most time-consuming thing that's happening and ignore everything
-else, prefering readability to unimportant time-saving. If a reviewer asks you to optimize O(n) work
+else, preferring readability to unimportant time-saving. If a reviewer asks you to optimize O(n) work
 in O(n**2) algorithm while making the code a bit less readable, push back.
 
 Be very humble when predicting what new features will be needed. Even if you're right that X
@@ -349,7 +352,7 @@ If you fall into the second case, consider changing your workflow. Slow down and
 high-quality code. Reason why the code should work ("On this place, the connection must be already
 opened, because I jump here only from here and here... wait, also from here! Oh my, that'd be a
 nasty bug to have."). Play a "coding game": If the code runs correctly on the first time (possibly
-after fixing small and easy bugs such as typos), you've won. Soon you develop a healthy ammount of
+after fixing small and easy bugs such as typos), you've won. Soon you develop a healthy amount of
 paranoia, which'll make you question your code all the time. You'll produce a code 3x slower but also
 10x faster.
 
@@ -394,7 +397,7 @@ Few tips:
   soon stop using you as an oracle and they start thinking for themselves.
 
 Finally, if it's not clear why the code works correctly, you shouldn't merge it. Author can use
-different ways to persuade you, she did a good job:
+different ways to persuade you she did a good job:
 
 - adding explanatory comments,
 - writing tests, demonstrating the desired functionality,
@@ -444,7 +447,7 @@ big project to run as a monolithic service either. Structuring the project to sm
 helps--as long as the microservices have well-defined responsibilities and the cross-cutting
 concerns are limitted.
 
-Unhealthy hype about microservices gave birth to systems with too much microservices and a lot of
+Unhealthy hype about microservices gave birth to systems with too many microservices and a lot of
 incidental complexity. Keep the number of microservices small and create them only after you're
 pretty certain that such a service makes sense; don't be affraid to start with monolithic design and
 then carve-out a few services later.
@@ -459,11 +462,11 @@ some custom tooling as well.
 
 === Fat code is good
 When you start coding, you name your variables `i`, `j`, `k`. Then you code a project with 10k lines
-and you discover using better names such as: `user`, `account`, `ammount` or `transfer()` is good
+and you discover using better names such as: `user`, `account`, `amount` or `transfer()` is good
 for your sanity.
 Then you code a project with 100k lines, discovering you need even better names:
 `account_sender_or_system_account`,
-`ammount_USD_before_VAT`, `try_transfer_with_SEPA()`. Often people use
+`amount_USD_before_VAT`, `try_transfer_with_SEPA()`. Often people use
 short and imprecise names that kick their ass badly, once the project grows.
 
 Good type system can help you shorten the names of your variables and parameters, since a lot of
@@ -471,8 +474,8 @@ info is just to describe the type. This is not always possible, especially for f
 be quite verbose.
 
 Using long names results in writing a fat code: simple expression such as `a = b + c + d` can overflow the
-100 characters limit, which looks ugly and not that readable. This is usually less severe
-problem as one may think.
+100 characters limit, which looks ugly and not that readable. However, this is usually a less severe
+problem than one may think.
 
 === Comments
 
@@ -507,17 +510,17 @@ Fixing a nasty hidden bug, also deserves a comment:
 
 === Idempotency
 
-Imagine a service that allows you to create new tansactions as such:
+Imagine a service that allows you to create new transactions as such:
 
 ```javascript
-external_service.add_new_transaction({from: "john", to: "jane", usd_ammount: 10})
+external_service.add_new_transaction({from: "john", to: "jane", usd_amount: 10})
 ```
 
 To handle possible errors, you need to add some try-catch logic:
 
 ```javascript
 try {
-  external_service.add_new_transaction({from_account: "john", to_account: "jane", usd_ammount: 10})
+  external_service.add_new_transaction({from_account: "john", to_account: "jane", usd_amount: 10})
 } catch (err) {
   // what now?
 }
@@ -526,7 +529,7 @@ try {
 How would you handle the error? You may want to repeat the transaction:
 
 ```javascript
-function try_send_transaction_with_repeat({from_account, to_account, usd_ammount, try_this_many_times}) {
+function try_send_transaction_with_repeat({from_account, to_account, usd_amount, try_this_many_times}) {
   // default value
   try_this_many_times = try_this_many_times || 10
   try {
@@ -534,7 +537,7 @@ function try_send_transaction_with_repeat({from_account, to_account, usd_ammount
   } catch (err) {
     if (try_this_many_times > 0) {
       wait(10000)
-      try_send_transaction({from_account, to_account, usd_ammount, try_this_many_times - 1})
+      try_send_transaction({from_account, to_account, usd_amount, try_this_many_times - 1})
     } else {
       // pun intended
       throw Error('sa mi neda poslat')
@@ -552,7 +555,7 @@ To overcome this, decent external services let you specify so-called _idempotenc
 as unique identifiers to your request. If the external service is decent, you can use it as such:
 
 ```javascript
-function try_send_transaction_with_repeat({from_account, to_account, usd_ammount, try_this_many_times, idempotency_key}) {
+function try_send_transaction_with_repeat({from_account, to_account, usd_amount, try_this_many_times, idempotency_key}) {
   // default values
   try_this_many_times = try_this_many_times || 10
   idempotency_key = idempotency_key || uuid()
@@ -561,7 +564,7 @@ function try_send_transaction_with_repeat({from_account, to_account, usd_ammount
   } catch (err) {
     if (try_this_many_times > 0) {
       wait(10000)
-      try_send_transaction({from_account, to_account, usd_ammount, try_this_many_times - 1, idempotency_key})
+      try_send_transaction({from_account, to_account, usd_amount, try_this_many_times - 1, idempotency_key})
     } else {
       // pun intended
       throw Error('sa mi neda poslat')
